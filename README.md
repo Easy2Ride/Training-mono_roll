@@ -24,17 +24,16 @@ All the evaluations are done using median scaling on KITTI dataset.
 
 | --model_name | abs_rel | sq_rel | rmse | rmse_log | delta<1.25 (a1)| delta<1.25<sup>2</sup> (a2) | delta<1.25<sup>3</sup> (a3) |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| mono_640x192_epoch19_roll   | 0.336 | 4.041 | 9.071 | 0.426 | 0.487 | 0.748 | 0.875 |
-| mono_640x192_epoch20_roll   | 0.337 | 4.068 | 9.099 | 0.426 | 0.490 | 0.747 | 0.873 |
-| mono+stereo_640x192_no roll | 0.282 | 2.897 | 8.169 | 0.383 | 0.557 | 0.801 | 0.906 |
-| mono_640x192 - original     | 0.282 | 3.007 | 8.235 | 0.379 | 0.565 | 0.806 | 0.908 |
-| mono_1024x320 - original    | 0.282 | 8.158 | 0.384 | 0.559 | 0.487 | 0.800 | 0.906 |
-
+| mono_640x192_no_roll        | 0.117 | 0.902 | 4.897 | 0.194 | 0.872 | 0.958 | 0.981 |
+| mono+stereo_640x192_no_roll | 0.108 | 0.820 | 4.693 | 0.188 | 0.884 | 0.961 | 0.981 |
+| mono_640x192_original       | 0.115 | 0.903 | 4.863 | 0.193 | 0.877 | 0.959 | 0.981 |
+| mono_1024x320_original      | 0.115 | 0.882 | 4.701 | 0.190 | 0.879 | 0.961 | 0.982 |
+| **mono_640x192_roll**       | **0.146** | **0.995** | **5.592** | **0.225** | **0.800** | **0.942** | **0.977** |
 
 
 ## Inference results:
 
-The results are not satisfactory. The training log is shown [here](https://github.com/shyam573/Training-mono_roll/blob/master/train_log.md).
+The results are not satisfactory.
 
 
 #### No angle:
