@@ -1,7 +1,40 @@
 
 # Monodepth2 training with roll angles:
 
-## Procedure:
+## Cloning the repository:
+
+The entire repository can be cloned with submodules using
+```
+git clone https://github.com/shyam573/Training-mono_roll
+git submodule init
+git submodule update
+```
+
+## Executing the code:
+
+This procedure removes the actual folder of KITTI dataset. The operations are performed on the current KITTI folder.
+
+- KITTI like folder structure can be created without images can be created by running the command below. This creates a folder structure just like KITTI format by also copying the .bin and .txt files from velodyne and oxts folders.
+```
+python create_tree.py
+```
+
+- Images with roll angles with the method mentioned in section below can be created running the following command:
+```
+python create_images.py
+```
+
+- Training can be performed by executing the following command:
+```
+python monodepth2/train.py --model_name mono_model --png
+```
+
+- Results for all the models can be checked using:
+```
+python inference.py
+```
+
+## Method used:
 
 - Roll angles are varied in between a range of -30 degrees and 30 degrees with a uniform distribution.
 
@@ -21,14 +54,16 @@
 
 All the evaluations are done using median scaling on KITTI dataset.
 
-
 | --model_name | abs_rel | sq_rel | rmse | rmse_log | delta<1.25 (a1)| delta<1.25<sup>2</sup> (a2) | delta<1.25<sup>3</sup> (a3) |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| mono_640x192_no_roll        | 0.117 | 0.902 | 4.897 | 0.194 | 0.872 | 0.958 | 0.981 |
-| mono+stereo_640x192_no_roll | 0.108 | 0.820 | 4.693 | 0.188 | 0.884 | 0.961 | 0.981 |
-| mono_640x192_original       | 0.115 | 0.903 | 4.863 | 0.193 | 0.877 | 0.959 | 0.981 |
-| mono_1024x320_original      | 0.115 | 0.882 | 4.701 | 0.190 | 0.879 | 0.961 | 0.982 |
-| **mono_640x192_roll**       | **0.146** | **0.995** | **5.592** | **0.225** | **0.800** | **0.942** | **0.977** |
+| mono_640x192_original         | 0.115 | 0.903 | 4.863 | 0.193 | 0.877 | 0.959 | 0.981 |
+| mono_1024x320_original        | 0.115 | 0.882 | 4.701 | 0.190 | 0.879 | 0.961 | 0.982 |
+| mono_640x192_no_roll          | 0.117 | 0.902 | 4.897 | 0.194 | 0.872 | 0.958 | 0.981 |
+| mono+stereo_640x192_no_roll   | 0.108 | 0.820 | 4.693 | 0.188 | 0.884 | 0.961 | 0.981 |
+| **mono_640x192_roll**         | **0.146** | **0.995** | **5.592** | **0.225** | **0.800** | **0.942** | **0.977** |
+| **mono+640x192_crop_and adjusted_intrinsics** | **0.133** | **1.081** | **5.601** | **0.218** | **0.836** | **0.943** | **0.975** |
+| **mono+640x192_no_crop**      | **0.120** | **0.886** | **4.860** | **0.197** | **0.869** | **0.958** | **0.981** |
+
 
 
 ## Inference results:
